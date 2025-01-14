@@ -7,5 +7,71 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<header>
+		<h1>Let's all go to the movies!</h1>
+		<h2>Oscar Mayor Winner Watcher</h2>
+	</header>
+	<main>
+		<section id="year-selector">
+			<label>Select a year</label>
+			<select>
+				<option>2025</option>
+				<option>2024</option>
+				<option>2023</option>
+				<option>2022</option>
+				<option>2021</option>
+				<option>2020</option>
+				<option>2019</option>
+			</select>
+			<button>Get movies</button>
+		</section>	
+		<section id="card-grid">
+			<div class="card">
+				<p>test</p>
+			</div>
+			<div class="card">
+				<p>test</p>
+			</div>
+			<div class="card">
+				<p>test</p>
+			</div>
+			<div class="card">
+				<p>test</p>
+			</div>
+		</section>
+	</main>
+	<footer>
+		Built, with love, by <a href="https://johngruyere.com/" target="_blank">Greer</a>
+	</footer>	
 </Layout>
+
+<style>
+	header {
+		color: goldenrod;
+	}
+	main {
+		color: goldenrod;
+		border: solid red 1px;
+	}
+	#card-grid {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 30px;
+		flex-flow: row wrap;
+	}
+	.card {
+		border: solid pink 1px;
+		width: 300px;
+	}
+	footer {
+		color: goldenrod;	
+	}
+	footer a {
+		text-decoration: none;
+		color: goldenrod;
+	}
+	footer a:hover {
+		text-decoration: underline;
+	}
+</style>
