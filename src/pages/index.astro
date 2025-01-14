@@ -54,15 +54,21 @@ import Layout from '../layouts/Layout.astro';
 		border: solid red 1px;
 	}
 	#card-grid {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		gap: 30px;
-		flex-flow: row wrap;
+		display: grid;
+    	gap: 1rem;
+    	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	}
 	.card {
+		display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	align-items: center;
 		border: solid pink 1px;
-		width: 300px;
+		height: 100%;
+    	width: 100%;
+		font-size: 3rem;
+		color: white;
+    	background: #353535;
 	}
 	footer {
 		color: goldenrod;	
@@ -74,4 +80,9 @@ import Layout from '../layouts/Layout.astro';
 	footer a:hover {
 		text-decoration: underline;
 	}
+
+	.container {
+
+	}
+
 </style>
