@@ -1,6 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -26,18 +27,7 @@ import Layout from '../layouts/Layout.astro';
 			<button>Get movies</button>
 		</section>	
 		<section id="card-grid">
-			<div class="card">
-				<p>test</p>
-			</div>
-			<div class="card">
-				<p>test</p>
-			</div>
-			<div class="card">
-				<p>test</p>
-			</div>
-			<div class="card">
-				<p>test</p>
-			</div>
+			<Card/>
 		</section>
 	</main>
 	<footer>
@@ -51,24 +41,15 @@ import Layout from '../layouts/Layout.astro';
 	}
 	main {
 		color: goldenrod;
-		border: solid red 1px;
+		padding: 1rem;
+	}
+	#year-selector {
+		padding: 1rem;
 	}
 	#card-grid {
 		display: grid;
     	gap: 1rem;
     	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	}
-	.card {
-		display: flex;
-    	flex-direction: column;
-    	justify-content: center;
-    	align-items: center;
-		border: solid pink 1px;
-		height: 100%;
-    	width: 100%;
-		font-size: 3rem;
-		color: white;
-    	background: #353535;
 	}
 	footer {
 		color: goldenrod;	
@@ -80,9 +61,4 @@ import Layout from '../layouts/Layout.astro';
 	footer a:hover {
 		text-decoration: underline;
 	}
-
-	.container {
-
-	}
-
 </style>

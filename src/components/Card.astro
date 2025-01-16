@@ -1,0 +1,36 @@
+<div class="movie-card">
+    <figure>
+        <img 
+            src="https://m.media-amazon.com/images/M/MV5BNjBhMWVmYjQtYmI2NC00NjdiLTliMjQtODliYjI5OTZmMzczXkEyXkFqcGc@._V1_.jpg"
+        />
+    </figure>
+    <div class="movie-info">
+        <h1>Title</h1>
+        <p>Director</p>
+        <p>1hr 30min</p>
+        <div class="streaming-container">
+            <button>Netflix</button>
+            <button>VOD</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .movie-card {
+        color: white;
+    	background: #353535;
+        max-width: 300px;
+        margin: auto;
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    .movie-info {
+        display: flex;
+        flex-direction: column;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
