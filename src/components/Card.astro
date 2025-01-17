@@ -1,7 +1,16 @@
 ---
-const { title, director } = Astro.props;
-// todo: fetch movie data from OMBd API
-// todo: fetch streaming-platform data from https://www.movieofthenight.com/about/api
+import * as streamingAvailability from "streaming-availability";
+const { title = "Movie Title", director = "Director Name" } = Astro.props;
+
+const RAPID_API_KEY = "a19bede4damsh048b7afd7cf49dbp14c59fjsn27ce41ccb7f1";
+const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
+	apiKey: RAPID_API_KEY
+}));
+const data = await client.showsApi.getShow({
+	id: "tt20221436", // imdb id for Emilia Pérez
+	country: "us",
+	seriesGranularity: "show",
+});
 ---
 
 <div class="movie-card">
@@ -11,12 +20,21 @@ const { title, director } = Astro.props;
         />
     </figure>
     <div class="movie-info">
-        <h1>{title}</h1>
-        <p>{director}</p>
-        <p>1hr 30min</p>
+        <h1>{data.title}</h1>
+        <p>{data.directors}</p>
+        <p>{data.runtime}</p>
         <div class="streaming-container">
-            <button>Netflix</button>
-            <button>VOD</button>
+            <button 
+                type="button" 
+                onclick=`
+                    window.open(
+                        "${data.streamingOptions.us[0].link}",
+                        "_blank"
+                    )    
+                `
+            >
+            {data.streamingOptions.us[0].service.name}
+            </button>
         </div>
     </div>
 </div>
