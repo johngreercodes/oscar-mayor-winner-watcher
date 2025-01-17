@@ -1,43 +1,21 @@
 ---
-import * as streamingAvailability from "streaming-availability";
-const { title = "Movie Title", director = "Director Name" } = Astro.props;
-
-const RAPID_API_KEY = "a19bede4damsh048b7afd7cf49dbp14c59fjsn27ce41ccb7f1";
-const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
-	apiKey: RAPID_API_KEY
-}));
-const data = await client.showsApi.getShow({
-	id: "tt20221436", // imdb id for Emilia Pérez
-	country: "us",
-	seriesGranularity: "show",
-});
 ---
 
-<div class="movie-card">
-    <figure>
-        <img 
-            src="https://m.media-amazon.com/images/M/MV5BNjBhMWVmYjQtYmI2NC00NjdiLTliMjQtODliYjI5OTZmMzczXkEyXkFqcGc@._V1_.jpg"
-        />
-    </figure>
-    <div class="movie-info">
-        <h1>{data.title}</h1>
-        <p>{data.directors}</p>
-        <p>{data.runtime}</p>
-        <div class="streaming-container">
-            <button 
-                type="button" 
-                onclick=`
-                    window.open(
-                        "${data.streamingOptions.us[0].link}",
-                        "_blank"
-                    )    
-                `
-            >
-            {data.streamingOptions.us[0].service.name}
-            </button>
+<!-- {movies[2025].map((movie)=>{
+    <div class="movie-card">
+        <figure>
+            <img src={data.imageSet.verticalPoster.w720}/>
+        </figure>
+        <div class="movie-info">
+            <h1>{data.title}</h1>
+            <p>{data.directors}</p>
+            <p>{convertRuntime(data.runtime)}</p>
+            <div class="streaming-container">
+                <button type="button">{data.streamingOptions.us[0].service.name}</button>
+            </div>
         </div>
     </div>
-</div>
+})} -->
 
 <style>
     .movie-card {

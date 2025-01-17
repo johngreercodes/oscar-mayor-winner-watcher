@@ -1,10 +1,49 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import * as streamingAvailability from "streaming-availability";
+import movies from '../data/movies.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
+	apiKey: import.meta.env.STREAMING_AVAILABILITY_API_KEY
+}));
+
+let newMoviesArray = []
+
+/* 
+game plan:
+- I have an array of objects for each movie (movies.json)
+- For each movie object, take the ID and use it to make an API request for the movie
+- Receive data object from request
+- Take data object and create a new object in a new array using title, director, runtime, poster, and streaming obtions
+- Map over that NewMoviesArray to display content on the page
+- Clean up /components/Card.astro
+*/
+
+movies[2025].forEach(element => {
+	const data = client.showsApi.getShow({
+		id: element.id,
+		country: "us"
+	});
+	newMoviesArray.push({
+		"title": `${data.title}`,
+		"director": "",
+		"runtime": "",
+		"poster": "",
+		"streamingOptions": ""
+	})
+});
+
+const data = await client.showsApi.getShow({
+	id: movies[2025][0].id, // imdb id for Emilia Pérez
+	country: "us"
+});
+
+const convertRuntime = (runtime: any) => {
+  let hours = Math.floor(runtime/60);
+  let minutes = (runtime % 60);
+  return `${hours}hr ${minutes}min`
+}
 ---
 
 <Layout>
@@ -17,31 +56,27 @@ import Card from '../components/Card.astro';
 			<label>Select a year</label>
 			<select>
 				<option>2025</option>
-				<option>2024</option>
-				<option>2023</option>
-				<option>2022</option>
-				<option>2021</option>
-				<option>2020</option>
-				<option>2019</option>
 			</select>
 			<button>Get movies</button>
 		</section>	
 		<section id="card-grid">
 			<Card title="Emilia Pérez" director="Jacques Audiard"/>
+			{movies[2025].map((movie)=><div>{movie.id}</div>)}
 		</section>
 	</main>
 	<footer>
-		Built, with love, by <a href="https://johngruyere.com/" target="_blank">Greer</a>
+		<a href="https://johngruyere.com/" target="_blank">Built by Greer</a>
 	</footer>	
 </Layout>
 
 <style>
 	header {
 		color: goldenrod;
+		height: 1rem;
 	}
 	main {
 		color: goldenrod;
-		padding: 1rem;
+		padding: 1rem 0 0 0;
 	}
 	#year-selector {
 		padding: 1rem;
