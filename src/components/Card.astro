@@ -1,3 +1,9 @@
+---
+const { title, director } = Astro.props;
+// todo: fetch movie data from OMBd API
+// todo: fetch streaming-platform data from https://www.movieofthenight.com/about/api
+---
+
 <div class="movie-card">
     <figure>
         <img 
@@ -5,8 +11,8 @@
         />
     </figure>
     <div class="movie-info">
-        <h1>Title</h1>
-        <p>Director</p>
+        <h1>{title}</h1>
+        <p>{director}</p>
         <p>1hr 30min</p>
         <div class="streaming-container">
             <button>Netflix</button>
