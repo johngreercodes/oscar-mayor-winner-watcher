@@ -1,15 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import * as streamingAvailability from "streaming-availability";
-import movies from '../data/movies.json';
-
-const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
-	apiKey: import.meta.env.STREAMING_AVAILABILITY_API_KEY
-}));
-
-let newMoviesArray = []
-
 /* 
 game plan:
 - I have an array of objects for each movie (movies.json)
@@ -19,31 +8,57 @@ game plan:
 - Map over that NewMoviesArray to display content on the page
 - Clean up /components/Card.astro
 */
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import * as streamingAvailability from "streaming-availability";
+import moviesJson from '../data/movies.json';
 
-movies[2025].forEach(element => {
+const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
+	apiKey: import.meta.env.STREAMING_AVAILABILITY_API_KEY
+}));
+
+let moviesArray: any[];
+moviesArray = [];
+
+for await (const movie of moviesJson[2025]) {
 	const data = client.showsApi.getShow({
-		id: element.id,
+		id: movie.id,
 		country: "us"
-	});
-	newMoviesArray.push({
-		"title": `${data.title}`,
-		"director": "",
-		"runtime": "",
-		"poster": "",
-		"streamingOptions": ""
 	})
-});
-
-const data = await client.showsApi.getShow({
-	id: movies[2025][0].id, // imdb id for Emilia Pérez
-	country: "us"
-});
-
-const convertRuntime = (runtime: any) => {
-  let hours = Math.floor(runtime/60);
-  let minutes = (runtime % 60);
-  return `${hours}hr ${minutes}min`
+	moviesArray.push({
+			"title": {data},
+			"director": "",
+			"runtime": "",
+			"poster": "",
+			"streamingOptions": ""
+		})
 }
+
+console.log(moviesArray);
+
+// moviesJson[2025].forEach(element => {
+// 	const data = client.showsApi.getShow({
+// 		id: element.id,
+// 		country: "us"
+// 	});
+// 	movies.push({
+// 		"title": "",
+// 		"director": "",
+// 		"runtime": "",
+// 		"poster": "",
+// 		"streamingOptions": ""
+// 	})
+// 	console.log(data);
+// });
+
+// const data = client.showsApi.getShow({
+// 	id: moviesJson[2025][0].id,
+// 	country: "us"
+// });
+
+// console.log("hi");
+// console.log(movies);
+// console.log("bye");
 ---
 
 <Layout>
@@ -60,8 +75,6 @@ const convertRuntime = (runtime: any) => {
 			<button>Get movies</button>
 		</section>	
 		<section id="card-grid">
-			<Card title="Emilia Pérez" director="Jacques Audiard"/>
-			{movies[2025].map((movie)=><div>{movie.id}</div>)}
 		</section>
 	</main>
 	<footer>

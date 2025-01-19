@@ -1,5 +1,28 @@
 ---
+const { movies } = Astro.props;
+
+const convertRuntime = (runtime: any) => {
+  let hours = Math.floor(runtime/60);
+  let minutes = (runtime % 60);
+  return `${hours}hr ${minutes}min`
+}
 ---
+
+{movies.map((movie: any)=>{
+    <div class="movie-card">
+        <figure>
+            <img src={movie.imgUrl}/>
+        </figure>
+        <div class="movie-info">
+            <h1>{movie.title}</h1>
+            <p>{movie.directors}</p>
+            <p>{convertRuntime(movie.runtime)}</p>
+            <div class="streaming-container">
+                <button type="button">{movie.streamingOptions}</button>
+            </div>
+        </div>
+    </div>
+})}
 
 <!-- {movies[2025].map((movie)=>{
     <div class="movie-card">
