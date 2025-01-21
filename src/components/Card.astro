@@ -7,8 +7,9 @@ const convertRuntime = (runtime: any) => {
   return `${hours}hr ${minutes}min`
 }
 ---
+<div>{movies}</div>
 
-{movies.map((movie: any)=>{
+<!-- {moviesArray.map((movie: any)=>{
     <div class="movie-card">
         <figure>
             <img src={movie.imgUrl}/>
@@ -19,22 +20,6 @@ const convertRuntime = (runtime: any) => {
             <p>{convertRuntime(movie.runtime)}</p>
             <div class="streaming-container">
                 <button type="button">{movie.streamingOptions}</button>
-            </div>
-        </div>
-    </div>
-})}
-
-<!-- {movies[2025].map((movie)=>{
-    <div class="movie-card">
-        <figure>
-            <img src={data.imageSet.verticalPoster.w720}/>
-        </figure>
-        <div class="movie-info">
-            <h1>{data.title}</h1>
-            <p>{data.directors}</p>
-            <p>{convertRuntime(data.runtime)}</p>
-            <div class="streaming-container">
-                <button type="button">{data.streamingOptions.us[0].service.name}</button>
             </div>
         </div>
     </div>

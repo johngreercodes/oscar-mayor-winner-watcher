@@ -17,48 +17,37 @@ const client = new streamingAvailability.Client(new streamingAvailability.Config
 	apiKey: import.meta.env.STREAMING_AVAILABILITY_API_KEY
 }));
 
-let moviesArray: any[];
-moviesArray = [];
-
-for await (const movie of moviesJson[2025]) {
-	const data = client.showsApi.getShow({
+async function fetchMovies(array:any) {
+	for await (const movie of moviesJson[2025]) {
+	client.showsApi.getShow({
 		id: movie.id,
 		country: "us"
-	})
-	moviesArray.push({
-			"title": {data},
-			"director": "",
-			"runtime": "",
-			"poster": "",
-			"streamingOptions": ""
+	}).then((response)=>{
+		array.push({
+			"title": response.title,
+			"director": response.directors![0],
+			"runtime": response.runtime,
+			"poster": response.imageSet.verticalPoster.w720,
+			"streamingOptions": {
+				"name": response.streamingOptions?.us[0]?.service?.name,
+				"link": response.streamingOptions?.us[0]?.link
+			}
 		})
-}
+		console.log(array);
+		return array;
+	}).catch((error)=>{
+		console.error(error);
+	})
+	}
+};
 
-console.log(moviesArray);
+let moviesArray: any[] = [];
 
-// moviesJson[2025].forEach(element => {
-// 	const data = client.showsApi.getShow({
-// 		id: element.id,
-// 		country: "us"
-// 	});
-// 	movies.push({
-// 		"title": "",
-// 		"director": "",
-// 		"runtime": "",
-// 		"poster": "",
-// 		"streamingOptions": ""
-// 	})
-// 	console.log(data);
-// });
+(async function storeMovies() {
+	let movies = await fetchMovies(moviesArray);
+	console.log(movies);
+})();
 
-// const data = client.showsApi.getShow({
-// 	id: moviesJson[2025][0].id,
-// 	country: "us"
-// });
-
-// console.log("hi");
-// console.log(movies);
-// console.log("bye");
 ---
 
 <Layout>
@@ -75,12 +64,17 @@ console.log(moviesArray);
 			<button>Get movies</button>
 		</section>	
 		<section id="card-grid">
+			<Card movies="prop connection test"/>
 		</section>
 	</main>
 	<footer>
 		<a href="https://johngruyere.com/" target="_blank">Built by Greer</a>
 	</footer>	
 </Layout>
+
+<script>
+
+</script>
 
 <style>
 	header {
