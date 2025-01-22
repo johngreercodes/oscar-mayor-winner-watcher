@@ -11,38 +11,26 @@ const convertRuntime = (runtime: any) => {
 }
 ---
 {moviesArray.map((movie)=>(
-    <div class="movie-card">
-        <figure>
-            <img src={movie.poster}/>
-        </figure>
-        <div class="movie-info">
-            <h1>{movie.title}</h1>
+    <article class="movie-card">
+        <article class="movie-info">
+            <header>{movie.title}</header>            
             <p>{movie.director}</p>
             <p>{convertRuntime(movie.runtime)}</p>
-            <div class="streaming-container">
-                <button type="button">{movie.streamingOptions.name}</button>
-            </div>
-        </div>
-    </div>
+            <footer>
+                <button class="contrast">{movie.streamingOptions.name}</button>
+            </footer>
+            {/* <div class="streaming-container"><button class="contrast">{movie.streamingOptions.name}</button></div> */}
+        </article>
+    </article>
 ))}
 
 
 <style>
     .movie-card {
-        color: white;
-    	background: #353535;
-        max-width: 300px;
-        margin: auto;
-        padding: 5px;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
+        background-size: contain;
     }
     .movie-info {
         display: flex;
         flex-direction: column;
-    }
-    img {
-        max-width: 100%;
-        max-height: 100%;
     }
 </style>
