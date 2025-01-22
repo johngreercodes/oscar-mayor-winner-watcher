@@ -1,5 +1,8 @@
 ---
-const { movies } = Astro.props;
+import moviesJson from '../data/movies.json';
+
+let moviesArray = moviesJson[2025]
+console.log(moviesArray)
 
 const convertRuntime = (runtime: any) => {
   let hours = Math.floor(runtime/60);
@@ -7,23 +10,22 @@ const convertRuntime = (runtime: any) => {
   return `${hours}hr ${minutes}min`
 }
 ---
-<div>{movies}</div>
-
-<!-- {movies.map((movie: any)=>{
+{moviesArray.map((movie)=>(
     <div class="movie-card">
         <figure>
-            <img src={movie.imgUrl}/>
+            <img src={movie.poster}/>
         </figure>
         <div class="movie-info">
             <h1>{movie.title}</h1>
-            <p>{movie.directors}</p>
+            <p>{movie.director}</p>
             <p>{convertRuntime(movie.runtime)}</p>
             <div class="streaming-container">
-                <button type="button">{movie.streamingOptions}</button>
+                <button type="button">{movie.streamingOptions.name}</button>
             </div>
         </div>
     </div>
-})} -->
+))}
+
 
 <style>
     .movie-card {

@@ -1,24 +1,44 @@
 {
     "2025": [
         {
-            "title": "Conclave",
-            "id": "tt20215234",
-            "winner": false
+          "title": "Wicked",
+          "director": "Jon M. Chu",
+          "runtime": 163,
+          "poster": "https://cdn.movieofthenight.com/show/14369601/poster/vertical/en/720.jpg?Expires=1769112914&Signature=XK1bF5kyV3Zjfc7rnh8roqMcMF1KQaaHN8PMhDKyZy2AS1N4daOxfkXcWST6LgueAGV0of-GuVSaDbomt6tWrgjR7CD5eOQ-u4sZ71y1omhsO8i8P3v58aUN3dWC6bPIk7s8KLiO~M1esIduvJMuMe235LGBu63kU7fM3jTkCQE6kp8H6dPrX1o8v~IP2bO4kF0zU72EZhO37jqCN6WKpvOGgFT31CdG9HjGDhG~6ute0hNhNOIWlcbXIj3GE1nFIfSzygbWT-gVt3S9WWdlX0TIy-c2TJturdXKcEs5d~YIVvyrH93aqH0Y7VWjOYsgJFkjYmjPk0tMh3~6BUo6rA__&Key-Pair-Id=KK4HN3OO4AT5R",
+          "streamingOptions": {
+            "name": "Prime Video",
+            "link": "https://www.amazon.com/gp/video/detail/B0DGZV9Z5Z/ref=atv_dp"
+          }
         },
         {
-            "title": "Emilia Pérez",
-            "id": "tt20221436",
-            "winner": false
+          "title": "Conclave",
+          "director": "Edward Berger",
+          "runtime": 120,
+          "poster": "https://www.movieofthenight.com/media/image.svg?title=Conclave&width=720&direction=vertical",
+          "streamingOptions": {
+            "name": "Prime Video",
+            "link": "https://www.amazon.com/gp/video/detail/B0DLKMHW18/ref=atv_dp"
+          }
         },
         {
-            "title": "Wicked",
-            "id": "tt1262426",
-            "winner": false
+          "title": "Emilia Pérez",
+          "director": "Jacques Audiard",
+          "runtime": 132,
+          "poster": "https://cdn.movieofthenight.com/show/8865416/poster/vertical/en/720.jpg?Expires=1763167953&Signature=aHhR7l-nWoLguSCkT59UJO7YA~3oAhzc3-GfMEjv8Haqc85bELfvabZ~O4PwB9qr25zKYHyleet7~hgO~OtNY3P4ZXYys0ce-iyGd3MXdvVtAMNhG5EsDbyvODWopHp7RsdtOe9V4codsuqeG3QD~dtMXCCFIoc0b8eelRtNJQqcCmxnRMmeRhhppGgnU9TEeH~5Y2DIeu9qCa3OWMCLcVa-d7JPRuPaBu1mgDpaUaxlN9wZSHctOWBUMUCh3Sw5HD3kw2G23lQlTCpyTon453CfGnIbVLZ~DgfDiY2lUglU5MUHUAdY2iAjguVlUX9ce3jcyiUpr~kgn2hqiJongg__&Key-Pair-Id=KK4HN3OO4AT5R",
+          "streamingOptions": {
+            "name": "Netflix",
+            "link": "https://www.netflix.com/title/81901696/"
+          }
         },
         {
-            "title": "Dune: Part Two",
-            "id": "tt15239678",
-            "winner": false
+          "title": "Dune: Part Two",
+          "director": "Denis Villeneuve",
+          "runtime": 165,
+          "poster": "https://cdn.movieofthenight.com/show/7521220/poster/vertical/en/720.jpg?Expires=1766864979&Signature=Cj08SAGDqp2njegcnJO6uh3b6YTxndW2IhXwJt7vgpVO5idMYXV8ixsxeZH7EmZS50v9k1nNm08-0SLxNmB6Pb7PKZ0v6ygLrqjfX7tzl2BBo5UMs8IV7Ysp7CkVRE466ER7T5Daq293x3ZtaAoCLaQolzMPQPp~1pnJf2d-87mG~dedIqals~WtRhkXEaZYuDhA3TF~pFk88huTMUvRy3xxBFm1hWeqnS5SbfxnC~zUFXgYacfu-hfmb~CF4xVfafu4RL8aFvdSgWBHrNRnWpovfk868RjmpkhdL1uj8bL8W4~19j5Xu-03lrD-wTCNp7IqtlJFX0njmCxrWIabgA__&Key-Pair-Id=KK4HN3OO4AT5R",
+          "streamingOptions": {
+            "name": "Netflix",
+            "link": "https://www.netflix.com/title/81602836/"
+          }
         }
-    ]
+      ]
 }
