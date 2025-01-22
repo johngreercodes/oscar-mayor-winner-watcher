@@ -1,52 +1,6 @@
 ---
-/* 
-game plan:
-- I have an array of objects for each movie (movies.json)
-- For each movie object, take the ID and use it to make an API request for the movie
-- Receive data object from request
-- Take data object and create a new object in a new array using title, director, runtime, poster, and streaming obtions
-- Map over that NewMoviesArray to display content on the page
-- Clean up /components/Card.astro
-*/
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import * as streamingAvailability from "streaming-availability";
-import moviesJson from '../data/movies.json';
-
-const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
-	apiKey: import.meta.env.STREAMING_AVAILABILITY_API_KEY
-}));
-
-async function fetchMovies(array:any) {
-	for await (const movie of moviesJson[2025]) {
-	client.showsApi.getShow({
-		id: movie.id,
-		country: "us"
-	}).then((response)=>{
-		array.push({
-			"title": response.title,
-			"director": response.directors![0],
-			"runtime": response.runtime,
-			"poster": response.imageSet.verticalPoster.w720,
-			"streamingOptions": {
-				"name": response.streamingOptions?.us[0]?.service?.name,
-				"link": response.streamingOptions?.us[0]?.link
-			}
-		})
-		console.log(array);
-		return array;
-	}).catch((error)=>{
-		console.error(error);
-	})
-	}
-};
-
-let moviesArray: any[] = [];
-
-(async function storeMovies() {
-	let movies = await fetchMovies(moviesArray);
-	console.log(movies);
-})();
+import Card from '../components/Card.jsx'
 
 ---
 
@@ -56,25 +10,14 @@ let moviesArray: any[] = [];
 		<h2>Oscar Mayor Winner Watcher</h2>
 	</header>
 	<main>
-		<section id="year-selector">
-			<label>Select a year</label>
-			<select>
-				<option>2025</option>
-			</select>
-			<button>Get movies</button>
-		</section>	
 		<section id="card-grid">
-			<Card movies="prop connection test"/>
+			<Card client:load/>
 		</section>
 	</main>
 	<footer>
 		<a href="https://johngruyere.com/" target="_blank">Built by Greer</a>
 	</footer>	
 </Layout>
-
-<script>
-
-</script>
 
 <style>
 	header {
